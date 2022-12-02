@@ -4,66 +4,64 @@
              x:Class="MauiAppErrandsForTheServiceTechnicians.MainPage"
              xmlns:viewmodel="clr-namespace:MauiAppErrandsForTheServiceTechnicians.MVVM.ViewModels"
              x:DataType="viewmodel:MainViewModel">
-
-    <Grid RowDefinitions="100, auto, *"
+    <StackLayout>
+        <Grid RowDefinitions="100, auto, *"
           ColumnDefinitions="0.75*, 0.25*"
           Padding="10"
           RowSpacing="10"
           ColumnSpacing="10">
-
-        <Image Grid.ColumnSpan="2"
+            <Image Grid.ColumnSpan="2"
                Source="logo.png"
                BackgroundColor="Transparent"/>
-        <Entry Placeholder="Enter Task" 
+            <Entry Placeholder="Enter Task" 
                Text="{Binding Text}"
                Grid.Row="1"/>
-        <Button Text="Add"
+            <Button Text="Add"
                 Command="{Binding AddCommand}"
                 Grid.Row="1"
                 Grid.Column="1"/>
 
-        <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
+            <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
                         ItemsSource="{Binding Items}"
-                        SelectionMode="None">
-            <!--<CollectionView.ItemsSource>
+                        SelectionMode="Multiple">
+                
+                <!--<CollectionView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Apples</x:String>
                     <x:String>Bananas</x:String>
                     <x:String>Grape</x:String>
                 </x:Array>
             </CollectionView.ItemsSource>-->
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Delete"
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+                        
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
                                            BackgroundColor="Red"
                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
                                            CommandParameter="{Binding .}"/>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Grid Padding="0,5">
-                            <Frame>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="2" 
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Grid Padding="0,5">
+                                <Frame>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="2" 
                                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TapCommand}"
                                                           CommandParameter="{Binding .}"/>
-                                </Frame.GestureRecognizers>
-                                <Label Text="{Binding .}"
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="{Binding .}"
                                        FontSize="24"/>
-                            </Frame>
-                        </Grid>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
-    
-    
-    
-    
-    
+                                </Frame>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+    </StackLayout>
     
     <!--<ScrollView>
         <VerticalStackLayout

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiAppErrandsForTheServiceTechnicians.MVVM.Views;
+using Microsoft.Maui.Controls;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -25,6 +26,7 @@ namespace MauiAppErrandsForTheServiceTechnicians.MVVM.ViewModels
         //ObservableProperty gör det mycket snyggare med en rad kod och smidigare för att kunna fungera för alla platformer.
         [ObservableProperty]
         string text;
+
 
         [RelayCommand]
         void Add()
